@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_host"
+            android:icon="@drawable/nav_call"
+            android:title="主页" />
+        <item
+            android:id="@+id/nav_daoshu"
+            android:icon="@drawable/nav_friends"
+            android:title="微分部分" />
+        <item
+            android:id="@+id/nav_jifen"
+            android:icon="@drawable/nav_location"
+            android:title="积分部分" />
+        <item
+            android:id="@+id/nav_shuoming"
+            android:icon="@drawable/nav_mail"
+            android:title="软件介绍" />
+
+    </group>
+</menu>
