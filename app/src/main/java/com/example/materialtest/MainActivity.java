@@ -1,5 +1,6 @@
 package com.example.materialtest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -58,6 +59,20 @@ public class MainActivity extends AppCompatActivity {
                    case R.id.nav_host:
                        mDrawerLayout.closeDrawers();
                        break;
+                   case R.id.nav_daoshu:
+                       item.setChecked(true);
+                       Intent intent = new Intent(MainActivity.this,DaoshuActivity.class);
+                       //item.setIntent(intent);
+                       startActivity(intent);
+                       break;
+                   case R.id.nav_jifen:
+                       item.setChecked(true);
+                       break;
+                   case R.id.nav_shuoming:
+                       item.setChecked(true);
+                       break;
+                   default:
+
                }
 
                mDrawerLayout.closeDrawer(Gravity.LEFT);

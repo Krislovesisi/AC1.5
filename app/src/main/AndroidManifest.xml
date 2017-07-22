@@ -21,6 +21,7 @@
             android:name=".ItemActivity"
             android:theme="@style/FruitActivityTheme">
         </activity>
+        <activity android:name=".DaoshuActivity"></activity>
 
     </application>
 
