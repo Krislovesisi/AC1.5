@@ -19,9 +19,11 @@
         </activity>
         <activity
             android:name=".ItemActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/ItemActivityTheme">
         </activity>
-        <activity android:name=".DaoshuActivity"></activity>
+        <activity android:name=".DaoshuActivity">
+
+        </activity>
 
     </application>
 

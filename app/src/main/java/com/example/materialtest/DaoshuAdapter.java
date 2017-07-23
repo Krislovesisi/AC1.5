@@ -1,70 +1,51 @@
 package com.example.materialtest;
 
-import android.support.v7.widget.RecyclerView;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
 
-public class DaoshuAdapter extends RecyclerView.Adapter <DaoshuAdapter.ViewHolder>{
+public class DaoshuAdapter extends ArrayAdapter<Daoshu>{
 
-    private List<Daoshu> DaoshuList;
+    private int resourceId;
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        View daoshuView;
+    public DaoshuAdapter(Context context, int textViewResourceId, List<Daoshu> objects) {
+        super(context, textViewResourceId, objects);
+        resourceId = textViewResourceId;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        Daoshu daoshu = getItem(position);
+        View view;
+        ViewHolder viewHolder;
+        if (convertView == null) {
+            view = LayoutInflater.from(getContext()).inflate(resourceId,null);
+            viewHolder = new ViewHolder();
+            viewHolder.daoshuImage = (ImageView) view.findViewById (R.id.daoshu_image);
+            viewHolder.daoshuName = (TextView) view.findViewById (R.id.daoshu_name);
+            view.setTag(viewHolder); // 将ViewHolder存储在View中
+        } else {
+            view = convertView;
+            viewHolder = (ViewHolder) view.getTag(); // 重新获取ViewHolder
+        }
+        viewHolder.daoshuImage.setImageResource(daoshu.getDaoshuimageId());
+        viewHolder.daoshuName.setText(daoshu.getDaoshuname());
+        return view;
+    }
+
+    class ViewHolder {
+
         ImageView daoshuImage;
+
         TextView daoshuName;
 
-        public ViewHolder(View view) {
-            super(view);
-            daoshuView = view;
-            daoshuImage = (ImageView) view.findViewById(R.id.daoshu_image);
-            daoshuName = (TextView) view.findViewById(R.id.daoshu_name);
-        }
-    }
-
-    public DaoshuAdapter(List<Daoshu> daoshuList) {
-        DaoshuList = daoshuList;
-    }
-
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.daoshu_item, parent, false);
-        final ViewHolder holder = new ViewHolder(view);
-        holder.daoshuView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int position = holder.getAdapterPosition();
-                Daoshu daoshu = DaoshuList.get(position);
-                Toast.makeText(v.getContext(), "you clicked view " + daoshu.getDaoshuname(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        holder.daoshuImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int position = holder.getAdapterPosition();
-                Daoshu fruit = DaoshuList.get(position);
-                Toast.makeText(v.getContext(), "you clicked image " + fruit.getDaoshuname(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        return holder;
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        Daoshu daoshu = DaoshuList.get(position);
-        holder.daoshuImage.setImageResource(daoshu.getDaoshuimageId());
-        holder.daoshuName.setText(daoshu.getDaoshuname());
-    }
-
-    @Override
-    public int getItemCount() {
-        return DaoshuList.size();
     }
 
 }
